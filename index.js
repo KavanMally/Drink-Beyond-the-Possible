@@ -23,20 +23,20 @@ $(document).ready(function() {
 			type: 'GET',
 			// Everything that happens after clicking the random option 
 			success: function(data){
+				console.log(xhr.status);
 				$('#container').load('drinkTemplate1.html');
 				name = data.drinks[0].strDrink;
 				img = data.drinks[0].strDrinkThumb;
 				// console.log(data);
 				data1 = data;
 				instructions = data.drinks[0].strInstructions;
-				console.log(instructions);
 				// str = data.drinks[0]["strTngredient" + number];
 				// console.log(str);
 				
 				//$('#drinkName').html('hello');
-				//$('#title').html(name);
 				
 				//$('#drinkName').html(name);
+				//$('#title').html(name);
 			},
 			//Error message
 			error: function(data){
@@ -58,7 +58,7 @@ $(document).ready(function() {
 				str = data1.drinks[0]["strIngredient" + number];
 				amount = data1.drinks[0]["strMeasure" + number];
 				number = number + 1;
-				console.log(amount);
+				//console.log(amount);
 				$('#ingredients').append("<p>" + amount + " " + str + "</p>");
 			}
 			$('#instructions').append("<p>"  + instructions + "</p");
