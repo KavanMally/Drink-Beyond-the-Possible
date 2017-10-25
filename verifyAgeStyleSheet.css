@@ -1,0 +1,35 @@
+header{
+	text-align: center;
+	font-size: xx-large;
+
+}
+
+
+
+body{
+	margin-right:  20%;
+	margin-left: 20%;
+	margin-top: 15%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border: double;
+}
+
+
+
+#UserInstructions{
+
+	text-align: center;
+}
+
+#VAInput{
+	margin-left: 30%;
+	margin-right: 30%;
+}
+
+#VAEnter{
+	padding-right: 20px;
+	padding-left: 20px;
+
+
+}
