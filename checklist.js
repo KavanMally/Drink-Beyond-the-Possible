@@ -1,11 +1,32 @@
 
+var list = [];
 
-
-function cookie(){
+function addToArray(item){
 	
+	
+	list.push(item);
+	console.log(getGlobalArray());
+}
+
+function removeFromArray(item){
+
+	var index = list.indexOf(item);
+	list.splice(index, 1);
+	
+	console.log(getGlobalArray());
+
 	
 }
 
+function printArray(){ console.log(list); }
+
+function getGlobalArray(){ return list; }
+
+function testEntries(){
+	addToArray("sherry");
+	addToArray("milk");
+	addToArray("lime");
+}
 
 
 function createCheckList(){
@@ -40,6 +61,13 @@ function createCheckList(){
 			checkbox.type = "checkbox";
 			checkbox.value = ingredient;
 			checkbox.id = ingredient;
+			
+			//console.log("sanity check: " + ingredient);
+			//checkbox.onclick = function(){checkboxHandler(checkbox.value);};
+			checkbox.addEventListener("change", function(){
+				if(this.checked){ addToArray(this.value); }
+				else{ removeFromArray(this.value);  }
+			});
 			
 			var label = document.createElement('label')
 			label.htmlFor = ingredient;
@@ -84,3 +112,32 @@ function createCheckList(){
 	});
 	
 }
+
+/*
+function createCookie(){
+	
+	var json_str = JSON.stringify(list);
+	//createCookie('mycookie', json_str);
+	
+	var days = 2;
+	
+	var d = new Date();
+	d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+	var expires = "expires=" + d.toUTCString();
+	document.cookie = "ingredients = " + json_str + ";" + expires + ";path=/";
+	
+	console.log("ingredients = " + json_str + ";" + expires + ";path=/");
+}
+
+function deleteCookie(){
+
+	document.cookie = "ingredients=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+	
+}
+
+function getCookie(){
+		
+	var cookie = document.cookie;
+	console.log(cookie);
+}
+*/
