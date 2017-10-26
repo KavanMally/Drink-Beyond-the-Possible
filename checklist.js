@@ -13,6 +13,9 @@ function removeFromArray(item){
 	console.log(getGlobalArray());
 }
 
+
+
+
 function printArray(){ console.log(list); }
 
 function getGlobalArray(){ return list; }
@@ -47,8 +50,6 @@ function createCheckList(){
 		for(var i = 0; i < data.drinks.length; i++){
 		
 			var li = document.createElement('li');
-			
-
 		
 			var ingredient = data.drinks[i].strIngredient1;
 		
