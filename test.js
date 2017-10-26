@@ -9,6 +9,9 @@ function testGlobalArray(){
 
 function unit_testing(){
 	
+	testCheckBoxes();
+	testAdding();
+	testRemoving();
 	
 }
 
