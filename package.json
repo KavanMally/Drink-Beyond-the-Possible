@@ -1,0 +1,22 @@
+{
+  "name": "drink-beyond-the-possible",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KavanMally/Drink-Beyond-the-Possible.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KavanMally/Drink-Beyond-the-Possible/issues"
+  },
+  "homepage": "https://github.com/KavanMally/Drink-Beyond-the-Possible#readme"
+}
