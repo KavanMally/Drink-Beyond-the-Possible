@@ -1,8 +1,8 @@
-module.exports = {
-function checkingAgeWrapper(){
-	input = document.getElementById('VABirthDay').value;
-	checkingAge(input);
-}
+// module.exports = {
+// function checkingAgeWrapper(){
+// 	input = document.getElementById('VABirthDay').value;
+// 	checkingAge(input);
+// }
 
 
 //function checkingAge(input){
@@ -51,7 +51,6 @@ exports.checkingAge = function(input){
 
 }
 
-}
 
 /*function loadDoc() {
 	
