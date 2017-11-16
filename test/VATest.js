@@ -1,4 +1,4 @@
-const verifyAgeScriptSheet = require('../verifyAgeScriptSheet.js');
+/*const verifyAgeScriptSheet = require('../verifyAgeScriptSheet.js');
 var expect = require('chai').expect
 var input = require('../verifyAgeScriptSheet.js')
 
@@ -21,14 +21,11 @@ describe('checkingAge', function(){
 		expect(output).to.equal(false);
 	});
 
-
-
 	it('returns nothing because no date was entered', function(){
 		var inputDate = '';
 		var output = input.checkingAge(inputDate);
 		expect(output).to.equal();
 	});
-
 
 	it('returns true because user is over 21 (by many years)', function(){
 		var inputDate = '1900-10-10';
@@ -47,17 +44,4 @@ describe('checkingAge', function(){
 		var output = input.checkingAge(inputDate);
 		expect(output).to.equal(true);
 	});
-
-
-
-
-	/*it('should return true if you are old enough and false under any other circumstance', function()){
-		let result = checkingAge();
-		assert.equal(result, true);
-		}*/
-
-
-
-
-
-});
+});*/
