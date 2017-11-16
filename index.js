@@ -108,8 +108,8 @@ $(document).ready(function() {
 		});
 		var bodyString = ""
 		textArray.forEach(function(item, index, textArray){
-			bodyString += item;
-			bodyString += ", ";
+		bodyString += item;
+		bodyString += ", ";
 		});
 		console.log(bodyString);
 
