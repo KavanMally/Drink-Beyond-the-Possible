@@ -36,6 +36,9 @@ function createCheckList(){
 	
 		//alert(data.drinks[0]);	
 		//console.log(data.drinks[1].strIngredient1);
+		
+		//set hashtable size
+		//setMax(data.drinks.length);
 
 		var div = document.createElement('div');
 		div.id = "checkboxes";
