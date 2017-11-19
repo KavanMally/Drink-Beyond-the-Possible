@@ -1,16 +1,11 @@
 {
-<<<<<<< HEAD
-  "name": "verifyagescriptsheet.js",
-=======
   "name": "drink-beyond-the-possible",
->>>>>>> 03255af0a31271671a53d65599c9e14ddd05894e
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
-<<<<<<< HEAD
   "dependencies": {
     "chai": "^4.1.2"
   },
@@ -18,10 +13,9 @@
     "chai": "^4.1.2",
     "mocha": "^4.0.1"
   },
-=======
->>>>>>> 03255af0a31271671a53d65599c9e14ddd05894e
   "scripts": {
     "test": "mocha"
+    
   },
   "repository": {
     "type": "git",
