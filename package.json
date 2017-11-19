@@ -11,6 +11,7 @@
     "test": "test"
   },
 <<<<<<< HEAD
+<<<<<<< HEAD
   "dependencies": {
     "chai": "^4.1.2"
   },
@@ -20,6 +21,12 @@
   },
 =======
 >>>>>>> 03255af0a31271671a53d65599c9e14ddd05894e
+=======
+  "dependencies": {
+    "chai": "^4.1.2",
+    "request": "^2.83.0"
+  },
+>>>>>>> 9b3dce47688a2e042bfb4e3ea16d10eac2073365
   "scripts": {
     "test": "mocha"
   },

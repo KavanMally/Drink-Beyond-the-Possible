@@ -63,7 +63,7 @@
             window.alert('Directions could not be produced because ' + status);
           }
         });
-        alert(finish.address);
+        alert(finish);
 		document.getElementById("OK").innerHTML = 
 		'<button onclick="routeSelected()">Select this Route</button>';
       }
@@ -71,7 +71,8 @@
 
       function callback(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
+          var i;
+          for (i = 0; i < results.length; i++) {
             createMarker(results[i]);
           }
         }

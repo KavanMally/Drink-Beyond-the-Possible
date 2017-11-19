@@ -1,4 +1,4 @@
-/*const verifyAgeScriptSheet = require('../verifyAgeScriptSheet.js');
+const verifyAgeScriptSheet = require('../verifyAgeScriptSheet.js');
 var expect = require('chai').expect
 var input = require('../verifyAgeScriptSheet.js')
 
@@ -44,4 +44,4 @@ describe('checkingAge', function(){
 		var output = input.checkingAge(inputDate);
 		expect(output).to.equal(true);
 	});
-});*/
+});
