@@ -15,6 +15,11 @@ body {
   font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+a{
+  text-decoration: none;
+
+}
+
 .text-vertical-center {
   display: table-cell;
   text-align: center;
@@ -183,6 +188,17 @@ hr.small {
   margin-bottom: 30px;
 }
 
+.templateContainer{
+  overflow: scroll;
+}
+
+#list{
+  overflow: scroll;
+  cursor: pointer;
+  color: white;
+}
+
+
 
 /* Callout */
 
@@ -227,6 +243,8 @@ hr.small {
 .call-to-action .btn {
   margin: 10px;
 }
+
+
 
 
 /* Map */

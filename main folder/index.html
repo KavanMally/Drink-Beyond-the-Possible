@@ -45,6 +45,9 @@
           <a class="js-scroll-trigger" href="#services">Services</a>
         </li>
         <li>
+          <a class="js-scroll-trigger" href="#searchDrinks">Search for a Drink</a>
+        </li>
+        <li>
           <a class="js-scroll-trigger" href="#portfolio">Portfolio</a>
         </li>
         <li>
@@ -74,11 +77,90 @@
     </section>
 
     <!-- Services -->
-    <section id="services" class="services bg-primary text-white">
+    <section id="searchDrinks" class="services bg-primary text-white">
       <div class="container">
         <div class="row text-center">
           <div class="col-lg-10 mx-auto">
-            <h2>Our Services</h2>
+            <h2>Search For a Drink!</h2>
+            <hr class="small">
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <div class="service-item">
+                  <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-cloud fa-stack-1x text-primary"></i>
+                  </span>
+                  <h4>
+                    <strong>Random Drink</strong>
+                  </h4>
+                  <p>Finds a random drink if your feeling lucky!</p>
+                  <a href="#template" class="btn btn-light js-scroll-trigger" id=randomSelect>Search</a>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="service-item">
+                  <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-compass fa-stack-1x text-primary"></i>
+                  </span>
+                  <h4>
+                    <strong>Find Drink By Ingredient</strong>
+                  </h4>
+                  <p>If you are looking for a particular drink, search by ingredient!</p>
+                  <input type="text" id="manualSearch">
+                  <a href="#results" class="btn btn-light js-scroll-trigger findDrinkButton" id=findDrinkButton>Search</a>
+                </div>
+              </div>
+              
+            </div>
+            <!-- /.row (nested) -->
+          </div>
+          <!-- /.col-lg-10 -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container -->
+    </section>
+
+    <section id="results" class="services bg-primary text-white">
+      <div class="resultContainer">
+        <div class="row text-center">
+          <div class="col-lg-10 mx-auto">
+            <h2>Search Results</h2>
+           <div id=list></div>
+            <!-- /.row (nested) -->
+          </div>
+          <!-- /.col-lg-10 -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container -->
+    </section>
+    <section id="template" class="services bg-primary text-white">
+      <div class="row text-center">
+        <div class="templateContainer col-md-12 col-sm-12">
+          <h2> Your Cocktail </h2>
+          <div class=drinkName id=drinkName></div>
+          <div class=drinkBody>
+          <div id=drinkPicture>
+            <img class=templateImage src="">
+          </div>
+          <div id=drinkText>
+          <div id=ingredients></div>
+            <div id=instructions></div>
+          </div>
+        </div>
+
+        </div>
+      </div>
+      <!-- /.container -->
+    </section>
+
+        <section id="results" class="services bg-primary text-white">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-lg-10 mx-auto">
+            <h2>Doesnt matter</h2>
             <hr class="small">
             <div class="row">
               <div class="col-md-3 col-sm-6">
