@@ -48,7 +48,7 @@
           <a class="js-scroll-trigger" href="#searchDrinks">Search for a Drink</a>
         </li>
         <li>
-          <a class="js-scroll-trigger" href="#portfolio">Portfolio</a>
+          <a class="js-scroll-trigger" href="#shoppingCart">Shopping Cart</a>
         </li>
         <li>
           <a class="js-scroll-trigger" href="#contact" onclick=$( "#menu-close").click();>Contact</a>
@@ -62,19 +62,10 @@
         <h1>Drink Beyond the Possible</h1>
         <h3>Bartending AI Assistant</h3>
         <br>
-        <a href="#about" class="btn btn-dark btn-lg js-scroll-trigger">Find Out More</a>
+        <a href="#searchDrinks" class="btn btn-dark btn-lg js-scroll-trigger">Find Out More</a>
       </div>
     </header>
 
-    <!-- About -->
-    <section id="about" class="about">
-      <div class="container text-center">
-        <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
-        <p class="lead">This theme features some wonderful photography courtesy of
-          <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a>.</p>
-      </div>
-      <!-- /.container -->
-    </section>
 
     <!-- Services -->
     <section id="searchDrinks" class="services bg-primary text-white">
@@ -107,7 +98,7 @@
                     <strong>Find Drink By Ingredient</strong>
                   </h4>
                   <p>If you are looking for a particular drink, search by ingredient!</p>
-                  <input type="text" id="manualSearch">
+                  <input type="text" id="manualSearch" placeholder="Ex. Orange Juice">
                   <a href="#results" class="btn btn-light js-scroll-trigger findDrinkButton" id=findDrinkButton>Search</a>
                 </div>
               </div>
@@ -156,11 +147,12 @@
       <!-- /.container -->
     </section>
 
-        <section id="results" class="services bg-primary text-white">
+
+      <section id="results" class="services bg-primary text-white">
       <div class="container">
         <div class="row text-center">
           <div class="col-lg-10 mx-auto">
-            <h2>Doesnt matter</h2>
+            <h2>Use this as a template to model your html @david and kavan... you can change the color and styling to whatever you want</h2>
             <hr class="small">
             <div class="row">
               <div class="col-md-3 col-sm-6">
@@ -225,68 +217,36 @@
       <!-- /.container -->
     </section>
 
-    <!-- Callout -->
-    <aside class="callout">
-      <div class="text-vertical-center">
-        <h1>Vertically Centered Text</h1>
-      </div>
-    </aside>
 
-    <!-- Portfolio -->
-    <section id="portfolio" class="portfolio">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-10 mx-auto text-center">
-            <h2>Our Work</h2>
-            <hr class="small">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="portfolio-item">
-                  <a href="#">
-                    <img class="img-portfolio img-fluid" src="img/portfolio-1.jpg">
-                  </a>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="portfolio-item">
-                  <a href="#">
-                    <img class="img-portfolio img-fluid" src="img/portfolio-2.jpg">
-                  </a>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="portfolio-item">
-                  <a href="#">
-                    <img class="img-portfolio img-fluid" src="img/portfolio-3.jpg">
-                  </a>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="portfolio-item">
-                  <a href="#">
-                    <img class="img-portfolio img-fluid" src="img/portfolio-4.jpg">
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!-- /.row (nested) -->
-            <a href="#" class="btn btn-dark">View More Items</a>
-          </div>
-          <!-- /.col-lg-10 -->
+
+    <section>
+    <div class="col-md-12 col-sm-12" id=shoppingCart>
+        <div id=cartContainer>
+        <div id=title>
+          <h1> Shopping Cart </h1>
         </div>
-        <!-- /.row -->
+        <div id=shoppingBody>
+          <div id=itemList>
+            <div id=cartTitle>Grocery List <i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
+            <div id=allItems>
+            </div>
+          </div>  
+        </div>
+        <div id=export>
+          Add to cart
+          <div id=addItem>
+            <input type="text" id="manualAdd" value="" class="addItem" placeholder="Strawberries">
+            <div id=addToCartButton class=addItem>add item to list</div>
+          </div>
+          <div id=enterNumber>
+            <input type="text" id="manualAdd" value="" class="addItem" placeholder="Ex. 1-123-456-7890">
+          </div>
+          <div id=sendText>SEND A TEXT</div>
+        </div>
       </div>
-      <!-- /.container -->
+    </div>
     </section>
 
-    <!-- Call to Action -->
-    <aside class="call-to-action bg-primary text-white">
-      <div class="container text-center">
-        <h3>The buttons below are impossible to resist.</h3>
-        <a href="#" class="btn btn-lg btn-light">Click Me!</a>
-        <a href="#" class="btn btn-lg btn-dark">Look at Me!</a>
-      </div>
-    </aside>
 
     <!-- Map -->
     <section id="contact" class="map">

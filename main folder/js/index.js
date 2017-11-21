@@ -70,16 +70,18 @@ $(document).ready(function() {
 			//$('img').attr("width","200px");
 			css('img','height','100px;');
 			attribute('img','style','height:300px;')
-			setValue('#ingredients',ingredients)
+			setValue('#ingredients',ingredients);
+			str = data1.drinks[0]["strIngredient1"];
 			while(str != ""){
 				str = data1.drinks[0]["strIngredient" + number];
 				amount = data1.drinks[0]["strMeasure" + number];
 				number = number + 1;
 				console.log(str);
 				console.log(amount);
-				$('#ingredients').append("<p>" + amount + " " + str + "</p>");
+				$('#ingredients').append("<div id=ingredient><div id=manualAdd1>"+ amount + " " + str + "</div> <div id=addToCartButton1 class='col-md-2 col-sm-2'>Add To Cart</div></div> <br>");
 			}
 			$('#instructions').append("<p> Instructions: "  + instructions + "</p");
+			number = 1;
 			//$('img').attr()
 		},2000);
 		
@@ -119,8 +121,10 @@ $(document).ready(function() {
 				// })
 				
 			}
-		},700);
+		},500);
 			$(document).on('click','#drink',function(){
+				document.getElementById('instructions').innerHTML = "";
+				$('ingredients').empty();
 				var drinkName = this.innerHTML;
 				console.log(drinkName);
 				var drinkNudeString = drinkName.replace(/[&\/\\#,+()$~%.'":*?<>{} -!]/g,'');
@@ -143,22 +147,28 @@ $(document).ready(function() {
 				$("#drinkName").attr('font-size', "100px;");
 				setValue('#drinkName', name);
 				//$('img').attr('src',img);
-				attribute('img','src',img);
+				attribute('.templateImage','src',img);
 				//css('img','width','50px;');
 				//$('img').attr("width","200px");
 				css('img','height','100px;');
-				attribute('img','style','height:300px;')
-				setValue('#ingredients',ingredients)
+				attribute('img','style','height:300px;');
+				setValue('#ingredients',ingredients);
+				str = data1.drinks[0]["strIngredient1"];
+				$('#ingredients').append( "Ingredients: <br>");
 				while(str != ""){
 					str = data1.drinks[0]["strIngredient" + number];
 					amount = data1.drinks[0]["strMeasure" + number];
 					number = number + 1;
 					console.log(amount);
-					$('#ingredients').append("<p>" + amount + " " + str + "</p>");
+					//$('#ingredients').append("<div id=ingredient>" + amount + " " + str + "<br>");
+					if (str != ""){
+						$('#ingredients').append("<div id=ingredient><div id=manualAdd1>"+ amount + " " + str + "</div> <div id=addToCartButton1 class='col-md-2 col-sm-2'>Add To Cart</div></div> <br>");
+					}
 				}
-				$('#instructions').append("<p>"  + instructions + "</p");
+				$('#instructions').append("Instructions: "+  instructions + "<br>");
+				number = 1;
 				//$('img').attr()
-			},700);
+			},500);
 		});
 		
 	});
@@ -167,7 +177,7 @@ $(document).ready(function() {
 
 	//Shopping cart remove from cart button
 	$(document).on('click','#removeItem',function(){
-		$('#singleItem').remove();
+		$(this).closest('#singleItem').remove();
 	});
 
 	//Shopping cart Add to cart button
@@ -176,6 +186,11 @@ $(document).ready(function() {
 		if (value != ""){
 			$('#allItems').append("<div id=singleItem><div class= item id=cartItem>" + value +  "</div><div class= item id=removeItem><i class='fa fa-times fa-1x' aria-hidden=true></i></div></div>");
 		}
+	});
+	$(document).on('click','#addToCartButton1',function(){
+		console.log("AFRICAAA");
+		var ingredientAdd = $(this).siblings("#manualAdd1").html();
+		$('#allItems').append("<div id=singleItem><div class= item id=cartItem>" + ingredientAdd +  "</div><div class= item id=removeItem><i class='fa fa-times fa-1x' aria-hidden=true></i></div></div>");
 	});
 
 	//Start Twilio stuff
