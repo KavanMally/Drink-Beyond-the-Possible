@@ -18,7 +18,7 @@ $(document).ready(function() {
 	var css = function(attribute1, change, value){
 		$(attribute1).css(change,value);
 	}
-
+	//Random drink search option is clicked
 	$('#randomSelect').on('click', function(){
 		$.ajax({
 			url:'http://www.thecocktaildb.com/api/json/v1/1/random.php',
@@ -80,15 +80,16 @@ $(document).ready(function() {
 				console.log(amount);
 				$('#ingredients').append("<div id=ingredient><div id=manualAdd1>"+ amount + " " + str + "</div> <div id=addToCartButton1 class='col-md-2 col-sm-2'>Add To Cart</div></div> <br>");
 			}
-			$('#instructions').append("<p> Instructions: "  + instructions + "</p");
+			$('#instructions').append("<p> Instructions: "  + instructions + "</p>");
 			number = 1;
 			//$('img').attr()
-		},2000);
+		},200);
 		
 	});
 
 	//Button for the find drink by manual ingredient search
 	$('.findDrinkButton').on('click', function(){
+		$('#list').empty();
 		console.log("here");
 		var drinkValue = document.getElementById('manualSearch').value;
 		console.log(drinkValue);
@@ -115,16 +116,13 @@ $(document).ready(function() {
 				//created to colve special characters conflict
 				
 				$('#list').append("<div id=" + "drink" + ">" + drinkName + "</div>" 
-		);
-				// $('#' + drinkNudeString).on('click',function(){
-					
-				// })
-				
+		);		
 			}
-		},500);
+		},200);
+
 			$(document).on('click','#drink',function(){
 				document.getElementById('instructions').innerHTML = "";
-				$('ingredients').empty();
+				$('#ingredients').empty();
 				var drinkName = this.innerHTML;
 				console.log(drinkName);
 				var drinkNudeString = drinkName.replace(/[&\/\\#,+()$~%.'":*?<>{} -!]/g,'');
@@ -148,8 +146,6 @@ $(document).ready(function() {
 				setValue('#drinkName', name);
 				//$('img').attr('src',img);
 				attribute('.templateImage','src',img);
-				//css('img','width','50px;');
-				//$('img').attr("width","200px");
 				css('img','height','100px;');
 				attribute('img','style','height:300px;');
 				setValue('#ingredients',ingredients);
@@ -168,7 +164,7 @@ $(document).ready(function() {
 				$('#instructions').append("Instructions: "+  instructions + "<br>");
 				number = 1;
 				//$('img').attr()
-			},500);
+			},200);
 		});
 		
 	});
