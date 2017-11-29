@@ -45,7 +45,10 @@
           <a class="js-scroll-trigger" href="#services">Services</a>
         </li>
         <li>
-          <a class="js-scroll-trigger" href="#portfolio">Portfolio</a>
+          <a class="js-scroll-trigger" href="#searchDrinks">Search for a Drink</a>
+        </li>
+        <li>
+          <a class="js-scroll-trigger" href="#shoppingCart">Shopping Cart</a>
         </li>
         <li>
           <a class="js-scroll-trigger" href="#contact" onclick=$( "#menu-close").click();>Contact</a>
@@ -59,26 +62,111 @@
         <h1>Drink Beyond the Possible</h1>
         <h3>Bartending AI Assistant</h3>
         <br>
-        <a href="#about" class="btn btn-dark btn-lg js-scroll-trigger">Find Out More</a>
+        <a href="#searchDrinks" class="btn btn-dark btn-lg js-scroll-trigger">Get Started</a>
       </div>
     </header>
 
-    <!-- About -->
-    <section id="about" class="about">
-      <div class="container text-center">
-        <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
-        <p class="lead">This theme features some wonderful photography courtesy of
-          <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a>.</p>
+
+    <!-- Services -->
+    <section id="searchDrinks" class="services bg-primary text-white">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-lg-10 mx-auto">
+            <h2>Search For a Drink!</h2>
+            <hr class="small">
+            <div class="row">
+              <div class="col-md-4 col-sm-12">
+                <div class="service-item">
+                  <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-cloud fa-stack-1x text-primary"></i>
+                  </span>
+                  <h4>
+                    <strong>Random Drink</strong>
+                  </h4>
+                  <p>Finds a random drink if your feeling lucky!</p>
+                  <a href="#template" class="btn btn-light js-scroll-trigger" id=randomSelect>Search</a>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <div class="service-item">
+                  <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-compass fa-stack-1x text-primary"></i>
+                  </span>
+                  <h4>
+                    <strong>Find Drink By Ingredient</strong>
+                  </h4>
+                  <p>If you are looking for a particular drink, search by ingredient!</p>
+                  <input type="text" id="manualSearch" placeholder="Ex. Orange Juice">
+                  <a href="#results" class="btn btn-light js-scroll-trigger findDrinkButton" id=findDrinkButton>Search</a>
+                </div>
+              </div>
+               <div class="col-md-4 col-sm-12">
+                <div class="service-item">
+                  <span class="fa-stack fa-4x">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-cloud fa-stack-1x text-primary"></i>
+                  </span>
+                  <h4>
+                    <strong>Search By Drink Name</strong>
+                  </h4>
+                  <p>Type in the name of your favorite drinks here!</p>
+                  <input type="text" id="manualSearch" placeholder="Ex. Miami Vice">
+                  <a href="#results" class="btn btn-light js-scroll-trigger">Search</a>
+                </div>
+              </div>
+              
+            </div>
+            <!-- /.row (nested) -->
+          </div>
+          <!-- /.col-lg-10 -->
+        </div>
+        <!-- /.row -->
       </div>
       <!-- /.container -->
     </section>
 
-    <!-- Services -->
-    <section id="services" class="services bg-primary text-white">
+    <section id="results" class="services bg-primary text-white">
+      <div class="resultContainer">
+        <div class="row text-center">
+          <div class="col-lg-10 mx-auto">
+            <h2>Search Results</h2>
+           <div id=list></div>
+            <!-- /.row (nested) -->
+          </div>
+          <!-- /.col-lg-10 -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container -->
+    </section>
+    <section id="template" class="services bg-primary text-white">
+      <div class="row text-center">
+        <div class="templateContainer col-md-12 col-sm-12">
+          <h2> Your Cocktail </h2>
+          <div class=drinkName id=drinkName></div>
+          <div class=drinkBody>
+          <div id=drinkPicture>
+            <img class=templateImage src="">
+          </div>
+          <div id=drinkText>
+          <div id=ingredients></div>
+            <div id=instructions></div>
+          </div>
+        </div>
+
+        </div>
+      </div>
+      <!-- /.container -->
+    </section>
+
+
+      <section id="results" class="services bg-primary text-white">
       <div class="container">
         <div class="row text-center">
           <div class="col-lg-10 mx-auto">
-            <h2>Our Services</h2>
+            <h2>Use this as a template to model your html @david and kavan... you can change the color and styling to whatever you want</h2>
             <hr class="small">
             <div class="row">
               <div class="col-md-3 col-sm-6">
@@ -143,68 +231,36 @@
       <!-- /.container -->
     </section>
 
-    <!-- Callout -->
-    <aside class="callout">
-      <div class="text-vertical-center">
-        <h1>Vertically Centered Text</h1>
-      </div>
-    </aside>
 
-    <!-- Portfolio -->
-    <section id="portfolio" class="portfolio">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-10 mx-auto text-center">
-            <h2>Our Work</h2>
-            <hr class="small">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="portfolio-item">
-                  <a href="#">
-                    <img class="img-portfolio img-fluid" src="img/portfolio-1.jpg">
-                  </a>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="portfolio-item">
-                  <a href="#">
-                    <img class="img-portfolio img-fluid" src="img/portfolio-2.jpg">
-                  </a>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="portfolio-item">
-                  <a href="#">
-                    <img class="img-portfolio img-fluid" src="img/portfolio-3.jpg">
-                  </a>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="portfolio-item">
-                  <a href="#">
-                    <img class="img-portfolio img-fluid" src="img/portfolio-4.jpg">
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!-- /.row (nested) -->
-            <a href="#" class="btn btn-dark">View More Items</a>
-          </div>
-          <!-- /.col-lg-10 -->
+
+    <section>
+    <div class="col-md-12 col-sm-12" id=shoppingCart>
+        <div id=cartContainer>
+        <div id=title>
+          <h1> Shopping Cart </h1>
         </div>
-        <!-- /.row -->
+        <div id=shoppingBody>
+          <div id=itemList>
+            <div id=cartTitle>Grocery List <i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
+            <div id=allItems>
+            </div>
+          </div>  
+        </div>
+        <div id=export>
+          Add to cart
+          <div id=addItem>
+            <input type="text" id="manualAdd" value="" class="addItem" placeholder="Strawberries">
+            <div id=addToCartButton class=addItem>add item to list</div>
+          </div>
+          <div id=enterNumber>
+            <input type="text" id="manualAdd" value="" class="addItem" placeholder="Ex. 1-123-456-7890">
+          </div>
+          <div id=sendText>SEND A TEXT</div>
+        </div>
       </div>
-      <!-- /.container -->
+    </div>
     </section>
 
-    <!-- Call to Action -->
-    <aside class="call-to-action bg-primary text-white">
-      <div class="container text-center">
-        <h3>The buttons below are impossible to resist.</h3>
-        <a href="#" class="btn btn-lg btn-light">Click Me!</a>
-        <a href="#" class="btn btn-lg btn-dark">Look at Me!</a>
-      </div>
-    </aside>
 
     <!-- Map -->
     <section id="contact" class="map">
@@ -221,17 +277,22 @@
         <div class="row">
           <div class="col-lg-10 mx-auto text-center">
             <h4>
-              <strong>Start Bootstrap</strong>
+              <strong>Questions or Suggestions?</strong>
             </h4>
-            <p>3481 Melrose Place
-              <br>Beverly Hills, CA 90210</p>
+            <p>1697 East 116th St.
+              <br>Cleveland, OH 44016</p>
             <ul class="list-unstyled">
               <li>
                 <i class="fa fa-phone fa-fw"></i>
-                (123) 456-7890</li>
+                (978) 382-3790</li>
               <li>
                 <i class="fa fa-envelope-o fa-fw"></i>
-                <a href="mailto:name@example.com">name@example.com</a>
+                <a href="mailto:name@example.com">vsp20@case.edu<br></a>
+                <i class="fa fa-envelope-o fa-fw"></i>
+
+                <a href="mailto:name@example.com">kavan@case.edu<br></a>
+                <i class="fa fa-envelope-o fa-fw"></i>
+                <a href="mailto:name@example.com">navia@case.edu<br></a>
               </li>
             </ul>
             <br>
@@ -253,7 +314,7 @@
               </li>
             </ul>
             <hr class="small">
-            <p class="text-muted">Copyright &copy; Your Website 2017</p>
+            <p class="text-muted">Copyright &copy; The Squad</p>
           </div>
         </div>
       </div>
@@ -271,6 +332,7 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/stylish-portfolio.js"></script>
+    <script src="js/index.js"></script>
 
   </body>
 
