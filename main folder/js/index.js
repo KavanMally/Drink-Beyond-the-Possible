@@ -83,7 +83,7 @@ $(document).ready(function() {
 			$('#instructions').append("<p> Instructions: "  + instructions + "</p>");
 			number = 1;
 			//$('img').attr()
-		},200);
+		},700);
 		
 	});
 
@@ -118,7 +118,7 @@ $(document).ready(function() {
 				$('#list').append("<div id=" + "drink" + ">" + drinkName + "</div>" 
 		);		
 			}
-		},200);
+		},700);
 
 			$(document).on('click','#drink',function(){
 				document.getElementById('instructions').innerHTML = "";
@@ -164,7 +164,7 @@ $(document).ready(function() {
 				$('#instructions').append("Instructions: "+  instructions + "<br>");
 				number = 1;
 				//$('img').attr()
-			},200);
+			},700);
 		});
 		
 	});
