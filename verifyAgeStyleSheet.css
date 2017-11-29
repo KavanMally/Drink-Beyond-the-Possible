@@ -12,9 +12,13 @@ body{
 	margin-top: 15%;
 	padding-top: 20px;
 	padding-bottom: 20px;
-	border: double;
+	
 }
 
+#InputOutput{
+	border: double;
+
+}
 
 
 #UserInstructions{

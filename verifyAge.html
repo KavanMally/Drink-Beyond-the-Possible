@@ -9,20 +9,23 @@
 	</head>
 
 	<body>
+		
 		<header>Drink Beyond The Possible</header>
 
-		<div id="UserInstructions">
+		<div id="InputOutput">
 			<p>
 				All users of Drink Beyond the Possible must be 21 years of age. <br>
 				Please enter your birthday bellow, and press enter to continue.   
 			</p>
-		</div>
+		
 
-		<div id="VAInput">	
-			<!-- maybe check how many days are in the month that's already chosen/ check to 	see if someone chooses Feb 31st or something. -->
-			<input type="date" id="VABirthDay">
-			<input type="button" id="VAEnter" value="enter" onclick="checkingAgeWrapper();">
+			<div id="VAInput">	
+				<!-- maybe check how many days are in the month that's already chosen/ check to 	see if someone chooses Feb 31st or something. -->
+				<input type="date" id="VABirthDay">
+				<input type="button" id="VAEnter" value="enter" onclick="	checkingAgeWrapper();">
+			</div>
 		</div>
+		<div id="Countdown"></div>
 	</body>
 
 </html>
