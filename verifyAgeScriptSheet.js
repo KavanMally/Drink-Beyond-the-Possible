@@ -24,35 +24,36 @@ function checkingAge(input){
 	var minYear = currentDate.getFullYear() - 21;
 	var minDay = currentDate.getDate();
 	var minMonth = currentDate.getMonth() + 1; // min month is 0-11 user month is 1 - 12
+	var oldEnough = 0; // the lock out function was triggering before the page changed so I had to implement if statment
+	// It serves no technical use but is a simple fix for a visual bug.
 
-	// at some point edit this so it has fewer retern statments, atm it's neccesary.
 	if(bDayYear < minYear){
-		alert("welcome");
-		//return true;
+		window.location.href = window.location.href + "/../main folder/index.html";
+		oldEnough = 1;
 	} else{
 		if (bDayYear == minYear){
 			if(bDayMonth < minMonth){
-				alert("welcome");
-				//return true;
+				window.location.href = window.location.href + "/../main folder/index.html";
+				oldEnough = 1;
 			} else if(bDayMonth == minMonth){
 				if(bDayDay < minDay){
-					alert("welcome");
-					//return true;
+					window.location.href = window.location.href + "/../main folder/index.html";
+					oldEnough = 1;
 				}
 			}
 		}	
-		// removes the input and locks the user out
-		//document.body.innerHTML = "You're too young to use this website!";
-		document.body.style.fontSize = "75px";
-		document.body.style.textAlign = "center";
-		lockOutOfApp(bDayYear, bDayMonth, bDayDay, currentDate);
-		return false;
+
+		if (oldEnough == 0) {
+			document.body.style.fontSize = "75px";
+			document.body.style.textAlign = "center";
+			lockOutOfApp(bDayYear, bDayMonth, bDayDay, currentDate);
+		}
 	}
 
 }
 
 function lockOutOfApp(bDayYear, bDayMonth, bDayDay, currentDate){
-	document.getElementById("InputOutput").innerHTML = "You're too young to use this website!";
+	document.getElementById("InputOutput").innerHTML = "You're too young to use this website! <br> The site will unlock when you are 21.";
 
 
 	var daysLeft = 0;
@@ -68,15 +69,13 @@ function lockOutOfApp(bDayYear, bDayMonth, bDayDay, currentDate){
 	var BdayMToDays = months[bDayMonth - 1] + bDayDay;
 	var CDateMToDays = months[currentDate.getMonth()] + currentDate.getDate();
 
-	alert(BdayMToDays); //330
-	alert(CDateMToDays); // 328
-
 	if (BdayMToDays < CDateMToDays) 
 	{
 		daysLeft = daysLeft - CDateMToDays + BdayMToDays; 
 	}
 
-	if (BdayMToDays > CDateMToDays) {
+	if (BdayMToDays > CDateMToDays) 
+	{
 		daysLeft = daysLeft + BdayMToDays - CDateMToDays;
 	}
 
@@ -95,12 +94,18 @@ function countdown(daysLeft){
 	currentHour = (currentHour + 5) % 24;
 	
 
-	if (currentHour == 23 && currentMin == 59 && currentSecond == 59) 
+	if (currentHour == 23 && currentMin == 59 && currentSecond == 59 && daysLeft != 0) 
 	{
 		daysLeft--;
 	}
 
-	document.getElementById("Countdown").innerHTML = " D-" + daysLeft + " H-" + currentHour + " Min-" + currentMin + " S-" + currentSecond;
+	document.getElementById("Countdown").innerHTML = " D-" + daysLeft + " H-" + currentHour + " M-" + currentMin + " S-" + currentSecond;
+
+	if (daysLeft == 0 && currentHour == 0 && currentMin == 0 && currentSecond == 0) 
+	{
+		window.location.href = window.location.href + "/../main folder/index.html";
+	}
+
 	return daysLeft;
 }
 
@@ -110,10 +115,12 @@ function loadDoc() {
 
 	xmlhttp.onreadystatechange = function() {
 			
-		if (xmlhttp.readyState == 1) {
+		if (xmlhttp.readyState == 1) 
+		{
 			document.body.innerHTML = "loading...";
 		}
-		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+		{
 			//logToAnalytics(url);
 		}
 	};
