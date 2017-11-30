@@ -17,7 +17,7 @@ function checkingAge(input){
 
 	var bDayYear = parseInt(userEnteredBirthDay);
 	var bDayMonth = parseInt(userEnteredBirthDay.substr(5,6));
-	var bDayDay = parseInt(userEnteredBirthDay.substr(8,9));
+	var bDayDay = parseInt(userEnteredBirthDay.substr(8,9)) - 1;
 
 	var currentDate = new Date();
 
