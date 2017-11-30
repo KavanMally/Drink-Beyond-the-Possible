@@ -3,6 +3,7 @@
 function HashTable(){
 	
 	this.ingredientsPresent = [];
+	//this.ingredient = [];
 	this._size = 0;
 	this._max = 0;
 	
@@ -18,7 +19,7 @@ HashTable.prototype.add = function(key){
 	hash = this.hashCode(key);
 	//console.log(hash);
 	//console.log("Hash of " + key + ": " + hash);
-	this.ingredientsPresent[hash] = true;
+	this.ingredientsPresent[hash] = {flag:true, };
 	this._size = this._size + 1;
 	
 };
@@ -38,7 +39,7 @@ HashTable.prototype.contains = function(key){
 
 };
 
-//https://gist.github.com/alexhawkins/f6329420f40e5cafa0a4
+//todo parse to lowercase
 HashTable.prototype.hashCode = function(key){
 	var hash = 0;
 	for (var i = 0; i < key.length; i++) {
@@ -74,6 +75,8 @@ function testHashtable(){
 	testAdd();
 	testRemove();
 	testContaining();
+	
+	heavyLoad();
 }
 
 function testSize(){
@@ -126,6 +129,64 @@ function testContaining(){
 	console.log("containing test");
 	assertequal(true, hashtable.contains("peas"));
 }
+
+function heavyLoad(){
+	var hashtable = new HashTable();
+	hashtable.setMax(10);
+	
+	var set = [];
+	
+	hashtable.add("peas");
+	console.log(hashtable.hashCode("peas"));
+	set.push("peas");
+	
+	hashtable.add("carrot");
+		console.log(hashtable.hashCode("carrot"));
+			set.push("carrot");
+
+
+	hashtable.add("apples");
+		console.log(hashtable.hashCode("apples"));
+			set.push("peas");
+
+
+	hashtable.add("jordans");
+		console.log(hashtable.hashCode("jordans"));
+			set.push("peas");
+
+
+	hashtable.add("plums");
+		console.log(hashtable.hashCode("plums"));
+			set.push("peas");
+
+
+	hashtable.add("yingling");
+		console.log(hashtable.hashCode("yingling"));
+			set.push("peas");
+
+
+	hashtable.add("potatoes");
+		console.log(hashtable.hashCode("potatoes"));
+			set.push("peas");
+
+
+	hashtable.add("vodka");
+		console.log(hashtable.hashCode("vodka"));
+			set.push("peas");
+
+
+	hashtable.add("chloroform");
+		console.log(hashtable.hashCode("chloroform"));
+			set.push("peas");
+
+
+	//hashtable.add("methenfetamines");
+		//console.log(hashtable.hashCode("methenfetamines"));
+
+
+	console.log(hashtable.ingredientsPresent);
+}
+
 
 function assertequal(x, y){
 	if(x == y){

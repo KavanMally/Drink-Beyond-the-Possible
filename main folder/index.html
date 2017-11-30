@@ -19,6 +19,11 @@
 
     <!-- Custom CSS -->
     <link href="css/stylish-portfolio.css" rel="stylesheet">
+	
+	<script src="js/checklist.js"> </script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
 
   </head>
 
@@ -118,6 +123,18 @@
               </div>
               
             </div>
+			
+			<!-- checkbox list -->
+			<div class="row" id="checkboxlist"> 
+			
+				<script>
+					createCheckList();
+					console.log(getGlobalArray());
+				</script>
+			
+			</div>
+			
+			
             <!-- /.row (nested) -->
           </div>
           <!-- /.col-lg-10 -->
@@ -333,6 +350,7 @@
     <!-- Custom scripts for this template -->
     <script src="js/stylish-portfolio.js"></script>
     <script src="js/index.js"></script>
+
 
   </body>
 

@@ -14,10 +14,14 @@ function removeFromArray(item){
 }
 
 
-function contains(key){
+function listContains(key){
 	
+	for(var i = 0; i < list.length; i++){
+		if(list[i].toLowerCase() === key.toLowerCase()) 
+			return true;
+	}
 	
-	
+	return false;
 }
 
 
@@ -46,6 +50,8 @@ function createCheckList(){
 		//set hashtable size
 		//setMax(data.drinks.length);
 
+		
+		//
 		var div = document.createElement('div');
 		div.id = "checkboxes";
 		
@@ -74,6 +80,8 @@ function createCheckList(){
 				else{ removeFromArray(this.value);  }
 			});
 			
+			
+			//
 			var label = document.createElement('label')
 			label.htmlFor = ingredient;
 			label.appendChild(document.createTextNode(ingredient));
@@ -83,11 +91,15 @@ function createCheckList(){
 			li.appendChild(label);
 			
 			ul.appendChild(li);
+			
+			
 		
 		}
 		
+		//
 		div.appendChild(ul);
-		document.body.appendChild(div);
+		document.getElementById('checkboxlist').appendChild(div);
+		//document.body.appendChild(div);
 
 		
 	});
