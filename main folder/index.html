@@ -43,6 +43,9 @@
         <li>
           <a class="js-scroll-trigger" href="#top">Home</a>
         </li>
+		<li> 
+			<a class="js-scroll-trigger" href="#checkboxes">Enter Ingredients</a>
+		</li>
         <li>
           <a class="js-scroll-trigger" href="#searchDrinks">Search for a Drink</a>
         </li>
@@ -65,8 +68,19 @@
       </div>
     </header>
 
+	<!-- Services -->
+	<section id="checkboxes" >
+	<!-- checkbox list -->
+			<div class="row" id="checkboxlist" class="services bg-primary text-white"> 
+			
+				<script>
+					createCheckList();
+					//console.log(getGlobalArray());
+				</script>
+			
+			</div>
+	</section>
 
-    <!-- Services -->
     <section id="searchDrinks" class="services bg-primary text-white">
       <div class="container">
         <div class="row text-center">
@@ -116,19 +130,7 @@
                 </div>
               </div>
               
-            </div>
-			
-			<!-- checkbox list -->
-			<div class="row" id="checkboxlist"> 
-			
-				<script>
-					createCheckList();
-					console.log(getGlobalArray());
-				</script>
-			
-			</div>
-			
-			
+            </div>			
             <!-- /.row (nested) -->
           </div>
           <!-- /.col-lg-10 -->
