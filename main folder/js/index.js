@@ -1,96 +1,112 @@
-	// var map;
-//       var infowindow;
-//       var directionsService;
-//       var directionsDisplay;
-//       var centerCords = {lat: 41.514, lng: -81.606};
+  var map;
+      var infowindow;
+      var directionsService;
+      var directionsDisplay;
+      var centerCords = {lat: 41.514, lng: -81.606};
+      var directionURL = "";
 
-//       //FIX THESE VARIABLES SO THEY ARE DECLARED IN A FUNCTION
+    function initMap() {
+        directionsService = new google.maps.DirectionsService;
+        directionsDisplay = new google.maps.DirectionsRenderer;
 
-//      /* function calculateZoomRadius(){
-//       	document.getElementById('radius').value;
-//       	// min zoom 
-//       	// max zoom 16
-//       }*/
+        map = new google.maps.Map(document.getElementById('contact'), {
+          center: centerCords,
+          zoom: 12
+        });
+        directionsDisplay.setMap(map);
 
-//       function initMap() {
-//         directionsService = new google.maps.DirectionsService;
-//         directionsDisplay = new google.maps.DirectionsRenderer;
+        //----------------------------------------------------------------
 
-//         map = new google.maps.Map(document.getElementById('contact'), {
-//           center: centerCords,
-//           zoom: 12
-//         });
-//         directionsDisplay.setMap(map);
+      if(centerCords.lat == 41.514 && centerCords.lng == -81.606){
+                if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            centerCords = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
 
-//         //----------------------------------------------------------------
-//                 if (navigator.geolocation) {
-//           navigator.geolocation.getCurrentPosition(function(position) {
-//             centerCords = {
-//               lat: position.coords.latitude,
-//               lng: position.coords.longitude
-//             };
+            map.setCenter(centerCords);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      }
+      //-------------------------------------------------------------------------------
 
-//             map.setCenter(centerCords);
-//           }, function() {
-//             handleLocationError(true, infoWindow, map.getCenter());
-//           });
-//         } else {
-//           // Browser doesn't support Geolocation
-//           handleLocationError(false, infoWindow, map.getCenter());
-//         }
-//       //-------------------------------------------------------------------------------
+        infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: centerCords,
+          radius: document.getElementById('radius').value,
+          type: ['liquor_store']
+        }, callback);
+      }
+      function calculateAndDisplayRoute(directionsService, directionsDisplay, start, finish, finishName) {
+        directionsService.route({
+          origin: start,
+          destination: finish,
+          travelMode: 'DRIVING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions could not be produced because ' + status);
+          }
+        });
 
-//         infowindow = new google.maps.InfoWindow();
-//         var service = new google.maps.places.PlacesService(map);
-//         service.nearbySearch({
-//           location: centerCords,
-//           radius: document.getElementById('radius').value,
-//           type: ['liquor_store']
-//         }, callback);
-//       }
+        alert(finishName);
+        // url that will be texted
+        directionUrl = "http://www.google.com/maps/dir/" + centerCords.lat + "," + centerCords.lng + "/" + formatStoreName(finishName) + "/@" + finish.lat() + "," + finish.lng();
+        alert(directionURL);
+    //document.getElementById("OK").innerHTML = 
+    //'<button onclick="routeSelected()">Select this Route</button>';
+      }
+   //onclick="secondFunction()"
 
-//       function calculateAndDisplayRoute(directionsService, directionsDisplay, start, finish) {
-//         directionsService.route({
-//           origin: start,
-//           destination: finish,
-//           travelMode: 'DRIVING'
-//         }, function(response, status) {
-//           if (status === 'OK') {
-//             directionsDisplay.setDirections(response);
-//           } else {
-//             window.alert('Directions could not be produced because ' + status);
-//           }
-//         });
-//         alert(finish);
-// 		document.getElementById("OK").innerHTML = 
-// 		'<button onclick="routeSelected()">Select this Route</button>';
-//       }
-// 	 //onclick="secondFunction()"
+      function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          var i;
+          for (i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+          }
+        }
+      }
 
-//       function callback(results, status) {
-//         if (status === google.maps.places.PlacesServiceStatus.OK) {
-//           var i;
-//           for (i = 0; i < results.length; i++) {
-//             createMarker(results[i]);
-//           }
-//         }
-//       }
+      function createMarker(place) {
+        //var placeLoc = place.geometry.location; might not be neccesary
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location
+        });
 
-//       function createMarker(place) {
-//         //var placeLoc = place.geometry.location; might not be neccesary
-//         var marker = new google.maps.Marker({
-//           map: map,
-//           position: place.geometry.location
-//         });
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(place.name);
+          infowindow.open(map, this);
+        });
 
-//         google.maps.event.addListener(marker, 'click', function() {
-//           infowindow.setContent(place.name);
-//           infowindow.open(map, this);
-//         });
+       google.maps.event.addListener(marker, 'click', function(){
+          marker.setVisible(false);
+          calculateAndDisplayRoute(directionsService, directionsDisplay, centerCords, place.geometry.location, place.name)
+        }); // can set visibility to false, try to make it so it does directions when you select 
+      }
 
-//        google.maps.event.addListener(marker, 'click', function(){
-//        calculateAndDisplayRoute(directionsService, directionsDisplay, centerCords, place.geometry.location)}); // can set visibility to false, try to make it so it does directions when you select 
-//       }
+            function formatStoreName(name){
+        var test = 1;
+        var formatedName = "";
+        while(name.indexOf(' ') != -1){
+          formatedName += name.substring(0, name.indexOf(' '));
+          formatedName += "+";
+          name = name.substring(name.indexOf(' ') + 1);
+          test++; 
+        }
+          formatedName += name;
+        return formatedName;
+      }
+
+
 var printBack = function(stuff){
 		console.log(stuff);
 }
