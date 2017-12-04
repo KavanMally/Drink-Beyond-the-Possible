@@ -19,8 +19,17 @@
 
     <!-- Custom CSS -->
     <link href="css/stylish-portfolio.css" rel="stylesheet">
-	
+	<script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+  <script src="js/stylish-portfolio.js"></script>
+    <!-- <script src="js/index.js"></script> -->
 	<script src="js/checklist.js"> </script>
+  <script src="js/index.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
     var map;
@@ -161,6 +170,7 @@
 				<script>
 					createCheckList();
 					//console.log(getGlobalArray());
+          var testString = "hello";
 				</script>
 			
 			</div>
@@ -181,6 +191,7 @@
                   </span>
                   <h4>
                     <strong>Random Drink</strong>
+                    <script></script>
                   </h4>
                   <p>Finds a random drink if your feeling lucky!</p>
                   <a href="#template" class="btn btn-light js-scroll-trigger" id=randomSelect>Search</a>
@@ -210,8 +221,8 @@
                     <strong>Search By Drink Name</strong>
                   </h4>
                   <p>Type in the name of your favorite drinks here!</p>
-                  <input type="text" id="manualSearch" placeholder="Ex. Miami Vice">
-                  <a href="#results" class="btn btn-light js-scroll-trigger">Search</a>
+                  <input type="text" id="keywordSearch" placeholder="Ex. Miami Vice">
+                  <a href="#results" class="btn btn-light js-scroll-trigger keywordSearch">Search</a>
                 </div>
               </div>
               
@@ -258,78 +269,6 @@
       </div>
       <!-- /.container -->
     </section>
-
-
-      <section id="results" class="services bg-primary text-white">
-      <div class="container">
-        <div class="row text-center">
-          <div class="col-lg-10 mx-auto">
-            <h2>Use this as a template to model your html @david and kavan... you can change the color and styling to whatever you want</h2>
-            <hr class="small">
-            <div class="row">
-              <div class="col-md-3 col-sm-6">
-                <div class="service-item">
-                  <span class="fa-stack fa-4x">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-cloud fa-stack-1x text-primary"></i>
-                  </span>
-                  <h4>
-                    <strong>Service Name</strong>
-                  </h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                  <a href="#" class="btn btn-light">Learn More</a>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-6">
-                <div class="service-item">
-                  <span class="fa-stack fa-4x">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-compass fa-stack-1x text-primary"></i>
-                  </span>
-                  <h4>
-                    <strong>Service Name</strong>
-                  </h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                  <a href="#" class="btn btn-light">Learn More</a>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-6">
-                <div class="service-item">
-                  <span class="fa-stack fa-4x">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-flask fa-stack-1x text-primary"></i>
-                  </span>
-                  <h4>
-                    <strong>Service Name</strong>
-                  </h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                  <a href="#" class="btn btn-light">Learn More</a>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-6">
-                <div class="service-item">
-                  <span class="fa-stack fa-4x">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-shield fa-stack-1x text-primary"></i>
-                  </span>
-                  <h4>
-                    <strong>Service Name</strong>
-                  </h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                  <a href="#" class="btn btn-light">Learn More</a>
-                </div>
-              </div>
-            </div>
-            <!-- /.row (nested) -->
-          </div>
-          <!-- /.col-lg-10 -->
-        </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.container -->
-    </section>
-
-
 
     <section>
     <div class="col-md-12 col-sm-12" id=shoppingCart>
@@ -465,7 +404,7 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/stylish-portfolio.js"></script>
-    <script src="js/index.js"></script>
+    <!-- <script src="js/index.js"></script> -->
 
 
   </body>
