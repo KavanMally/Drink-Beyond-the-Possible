@@ -49,7 +49,8 @@ function createCheckList(){
 		
 		//set hashtable size
 		//setMax(data.drinks.length);
-
+		//alert(data);
+		//data.drinks.strIngredient1.sort();
 		
 		//
 		var div = document.createElement('div');
