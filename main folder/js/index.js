@@ -4,8 +4,10 @@
       var directionsDisplay;
       var centerCords = {lat: 41.514, lng: -81.606};
       var directionURL = "";
+      var selectedMarker = null;
 
     function initMap() {
+    	document.getElementById("moreInfo").innerHTML = ""; // resets the buttons because nothing is selected 
         directionsService = new google.maps.DirectionsService;
         directionsDisplay = new google.maps.DirectionsRenderer;
 
@@ -35,6 +37,7 @@
         }
       }
       //-------------------------------------------------------------------------------
+      	var selectedMarker = null;
 
         infowindow = new google.maps.InfoWindow();
         var service = new google.maps.places.PlacesService(map);
@@ -59,11 +62,11 @@
 
         alert(finishName);
         // url that will be texted
-        directionUrl = "http://www.google.com/maps/dir/" + centerCords.lat + "," + centerCords.lng + "/" + formatStoreName(finishName) + "/@" + finish.lat() + "," + finish.lng();
+        directionURL = "http://www.google.com/maps/dir/" + centerCords.lat + "," + centerCords.lng + "/" + formatStoreName(finishName) + "/@" + finish.lat() + "," + finish.lng();
         alert(directionURL);
-    //document.getElementById("OK").innerHTML = 
-    //'<button onclick="routeSelected()">Select this Route</button>';
-      }
+        document.getElementById("moreInfo").innerHTML = '<a class="btn btn-light" href="' + directionURL + '" target="_blank">More Info</a> ' +
+        '<a class="btn btn-light" href="' + directionURL + '" target="_blank">Push Dir. to Text</a>'; // Here's the button Vish
+          }
    //onclick="secondFunction()"
 
       function callback(results, status) {
@@ -88,12 +91,19 @@
         });
 
        google.maps.event.addListener(marker, 'click', function(){
+
+       	  if (selectedMarker != null) 
+       	  {
+       	  	selectedMarker.setVisible(true);
+       	  }
+
+       	  selectedMarker = marker;
           marker.setVisible(false);
           calculateAndDisplayRoute(directionsService, directionsDisplay, centerCords, place.geometry.location, place.name)
         }); // can set visibility to false, try to make it so it does directions when you select 
       }
 
-            function formatStoreName(name){
+       function formatStoreName(name){
         var test = 1;
         var formatedName = "";
         while(name.indexOf(' ') != -1){
@@ -410,12 +420,3 @@ $(document).ready(function() {
 
 });
 
-
-//-------------------------------------------------------------------------------------------------------
-//------------------------------------------MAPPING STUFF------------------------------------------------
-//-------------------------------------------------------------------------------------------------------
-
-      
-
-//--------------------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------------------
