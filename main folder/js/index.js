@@ -91,6 +91,9 @@
 //        google.maps.event.addListener(marker, 'click', function(){
 //        calculateAndDisplayRoute(directionsService, directionsDisplay, centerCords, place.geometry.location)}); // can set visibility to false, try to make it so it does directions when you select 
 //       }
+var printBack = function(stuff){
+		console.log(stuff);
+}
 
 
 $(document).ready(function() {
@@ -103,7 +106,17 @@ $(document).ready(function() {
 	var instructions="";
 	var statCode;
 	var ingredients = " ";
+	var redCount = 0;
 
+	var listContains = function(key){
+	
+	for(var i = 0; i < list.length; i++){
+		if(list[i].toLowerCase() === key.toLowerCase()) 
+			return true;
+	}
+	
+		return false;
+	}
 	var setValue = function(attribute, value){
 		$(attribute).html(value).fadeIn('3000');
 	}
@@ -113,12 +126,14 @@ $(document).ready(function() {
 	var css = function(attribute1, change, value){
 		$(attribute1).css(change,value);
 	}
+
 	$(document).on('click','#drink',function(){
 				
 				$('#ingredients').empty();
 				instructions = " ";
 				var drinkName = this.innerHTML;
 				var drinkNudeString = drinkName.replace(/[&\/\\#,+()$~%.'":*?<>{} -!]/g,'');
+
 				$.ajax({
 					url: "http://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + drinkName,
 					dataType: 'json',
@@ -144,7 +159,7 @@ $(document).ready(function() {
 				attribute('img','style','height:300px;');
 				setValue('#ingredients',ingredients);
 				str = data1.drinks[0]["strIngredient1"];
-				$('#ingredients').append( "Ingredients: <br>");
+				$('#ingredients').append( "Ingredients: (Green means you have it in stock and red means you don't) <br>");
 				while(str != ""){
 					str = data1.drinks[0]["strIngredient" + number];
 					amount = data1.drinks[0]["strMeasure" + number];
@@ -152,11 +167,20 @@ $(document).ready(function() {
 					console.log(amount);
 					//$('#ingredients').append("<div id=ingredient>" + amount + " " + str + "<br>");
 					if (str != ""){
-						$('#ingredients').append("<div id=ingredient><div id=manualAdd1>"+ amount + " " + str + "</div> <div id=addToCartButton1 class='col-md-2 col-sm-2'>Add To Cart</div></div> <br>");
+						if (listContains(str)){
+							$('#ingredients').append("<div id=ingredient><div id=manualAdd1 style='color:#32CD32'>"+ amount + " " + str + "</div> <div id=addToCartButton1 class='col-md-2 col-sm-2'>Add To Cart</div></div> <br>");
+							
+						}
+						else{
+							$('#ingredients').append("<div id=ingredient><div id=manualAdd1 style='color:red'>"+ amount + " " + str + "</div> <div id=addToCartButton1 class='col-md-2 col-sm-2'>Add To Cart</div></div> <br>");
+							redCount++;
+						}
 					}
 				}
+				$('#ingredients').append("<div id=ingredient><div>You need "+ redCount + " more ingredients to make this drink<br></div></div>");
 				$('#instructions').append("Instructions: "+  instructions + "<br>");
 				number = 1;
+				redCount = 0;
 				//$('img').attr()
 			},700);
 		});
@@ -182,19 +206,13 @@ $(document).ready(function() {
 			success: function(data){
 				//$('#templateContainer').load('drinkTemplate1.html');
 				//loadTemplate();
+				document.getElementById('instructions').innerHTML = "";
 				name = data.drinks[0].strDrink;
 				img = data.drinks[0].strDrinkThumb;
 				// console.log(data);
 				data1 = data;
 				instructions = data.drinks[0].strInstructions;
 				console.log(instructions);
-				// str = data.drinks[0]["strTngredient" + number];
-				// console.log(str);
-				
-				//$('#drinkName').html('hello');
-				//$('#title').html(name);
-				
-				//$('#drinkName').html(name);
 			},
 			//Error message
 			error: function(data){
@@ -218,12 +236,21 @@ $(document).ready(function() {
 				str = data1.drinks[0]["strIngredient" + number];
 				amount = data1.drinks[0]["strMeasure" + number];
 				number = number + 1;
-				console.log(str);
-				console.log(amount);
-				$('#ingredients').append("<div id=ingredient><div id=manualAdd1>"+ amount + " " + str + "</div> <div id=addToCartButton1 class='col-md-2 col-sm-2'>Add To Cart</div></div> <br>");
+				if (str != ""){
+					if (listContains(str)){
+						$('#ingredients').append("<div id=ingredient><div id=manualAdd1 style='color:#32CD32'>"+ amount + " " + str + "</div> <div id=addToCartButton1 class='col-md-2 col-sm-2'>Add To Cart</div></div> <br>");
+						
+					}
+					else{
+						$('#ingredients').append("<div id=ingredient><div id=manualAdd1 style='color:red'>"+ amount + " " + str + "</div> <div id=addToCartButton1 class='col-md-2 col-sm-2'>Add To Cart</div></div> <br>");
+						redCount++;
+					}
+				}
 			}
+			$('#ingredients').append("<div id=ingredient><div>You need "+ redCount + " more ingredients to make this drink<br></div></div>");
 			$('#instructions').append("<p> Instructions: "  + instructions + "</p>");
 			number = 1;
+			redCount = 0;
 			//$('img').attr()
 		},700);
 		
@@ -289,7 +316,6 @@ $(document).ready(function() {
 				//console.log(drinkName);
 				var drinkName = drinkList[i].strDrink;
 				//created to colve special characters conflict
-				
 				$('#list').append("<div id=" + "drink" + ">" + drinkName + "</div>" 
 		);		
 			}
