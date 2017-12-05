@@ -11,9 +11,20 @@
         directionsService = new google.maps.DirectionsService;
         directionsDisplay = new google.maps.DirectionsRenderer;
 
+        //determines initial zoom based on radius searched
+        var zoomValue = 12;
+        if(document.getElementById('radius').value >= 8000){
+        	zoomValue = 11;
+        	if(document.getElementById('radius').value >= 20000){
+        		zoomValue = 10;
+        	}
+
+        }
+
+
         map = new google.maps.Map(document.getElementById('contact'), {
           center: centerCords,
-          zoom: 12
+          zoom: zoomValue
         });
         directionsDisplay.setMap(map);
 
