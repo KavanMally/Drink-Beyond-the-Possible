@@ -209,7 +209,7 @@ $(document).ready(function() {
 							
 						}
 						else{
-							$('#ingredients').append("<div id=ingredient><div id=manualAdd1 style='color:red'>"+ amount + " " + str + "</div> <div id=addToCartButton1 class='col-md-2 col-sm-2'>Add To Cart</div></div> <br>");
+							$('#ingredients').append("<div id=ingredient><div id=manualAdd1 style='color:#FFCCCC'>"+ amount + " " + str + "</div> <div id=addToCartButton1 class='col-md-2 col-sm-2'>Add To Cart</div></div> <br>");
 							redCount++;
 						}
 					}
@@ -279,7 +279,7 @@ $(document).ready(function() {
 						
 					}
 					else{
-						$('#ingredients').append("<div id=ingredient><div id=manualAdd1 style='color:red'>"+ amount + " " + str + "</div> <div id=addToCartButton1 class='col-md-2 col-sm-2'>Add To Cart</div></div> <br>");
+						$('#ingredients').append("<div id=ingredient><div id=manualAdd1 style='color:#FFCCCC'>"+ amount + " " + str + "</div> <div id=addToCartButton1 class='col-md-2 col-sm-2'>Add To Cart</div></div> <br>");
 						redCount++;
 					}
 				}
