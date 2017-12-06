@@ -46,7 +46,7 @@ h3{
 html{
 	font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	color: #FEFFFF;
-	background-image: url('main folder/img/cocktailHeader.jpg');
+	background-image: url('img/cocktailHeader.jpg');
     min-height: 100%;
     background-position: center;
     background-size: cover;

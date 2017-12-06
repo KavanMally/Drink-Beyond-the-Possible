@@ -58,7 +58,7 @@
           type: ['liquor_store']
         }, callback);
       }
-      function calculateAndDisplayRoute(directionsService, directionsDisplay, start, finish, finishName) {
+      function calculateAndDisplayRoute(directionsService, directionsDisplay, start, finish, finishAddress) {
         directionsService.route({
           origin: start,
           destination: finish,
@@ -71,10 +71,8 @@
           }
         });
 
-        alert(finishName);
         // url that will be texted
-        directionURL = "http://www.google.com/maps/dir/" + centerCords.lat + "," + centerCords.lng + "/" + formatStoreName(finishName) + "/@" + finish.lat() + "," + finish.lng();
-        alert(directionURL);
+        directionURL = "http://www.google.com/maps/dir/" + centerCords.lat + "," + centerCords.lng + "/" + formatStoreName(finishAddress) + "/@" + finish.lat() + "," + finish.lng();
         document.getElementById("moreInfo").innerHTML = '<a class="btn btn-light" href="' + directionURL + '" target="_blank">More Info</a> ' +
         '<a class="btn btn-light" href="' + directionURL + '" target="_blank">Push Dir. to Text</a>'; // Here's the button Vish
           }
@@ -110,7 +108,7 @@
 
        	  selectedMarker = marker;
           marker.setVisible(false);
-          calculateAndDisplayRoute(directionsService, directionsDisplay, centerCords, place.geometry.location, place.name)
+          calculateAndDisplayRoute(directionsService, directionsDisplay, centerCords, place.geometry.location, place.vicinity) // if extra time re add place.name to the vicinty and fix the bug
         }); // can set visibility to false, try to make it so it does directions when you select 
       }
 

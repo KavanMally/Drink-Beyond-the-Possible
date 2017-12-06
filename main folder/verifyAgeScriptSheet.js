@@ -28,16 +28,16 @@ function checkingAge(input){
 	// It serves no technical use but is a simple fix for a visual bug.
 
 	if(bDayYear < minYear){
-		window.location.href = window.location.href + "/../main folder/index.html";
+		window.location.href = window.location.href + "/../index.html";
 		oldEnough = 1;
 	} else{
 		if (bDayYear == minYear){
 			if(bDayMonth < minMonth){
-				window.location.href = window.location.href + "/../main folder/index.html";
+				window.location.href = window.location.href + "/../index.html";
 				oldEnough = 1;
 			} else if(bDayMonth == minMonth){
 				if(bDayDay < minDay){
-					window.location.href = window.location.href + "/../main folder/index.html";
+					window.location.href = window.location.href + "/../index.html";
 					oldEnough = 1;
 				}
 			}
@@ -103,7 +103,7 @@ function countdown(daysLeft){
 
 	if (daysLeft == 0 && currentHour == 0 && currentMin == 0 && currentSecond == 0) 
 	{
-		window.location.href = window.location.href + "/../main folder/index.html";
+		window.location.href = window.location.href + "/../index.html";
 	}
 
 	return daysLeft;
@@ -124,8 +124,4 @@ function loadDoc() {
 			//logToAnalytics(url);
 		}
 	};
-	
-  xhttp.open("GET", "checklist.html", true);
-  xhttp.send();
-  alert("AHHHHHHHHHH");
 }
