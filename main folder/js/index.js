@@ -5,6 +5,7 @@
       var centerCords = {lat: 41.514, lng: -81.606};
       var directionURL = "";
       var selectedMarker = null;
+      var directionURLString = "";
 
     function initMap() {
     	document.getElementById("moreInfo").innerHTML = ""; // resets the buttons because nothing is selected 
@@ -74,7 +75,7 @@
         // url that will be texted
         directionURL = "http://www.google.com/maps/dir/" + centerCords.lat + "," + centerCords.lng + "/" + formatStoreName(finishAddress) + "/@" + finish.lat() + "," + finish.lng();
         document.getElementById("moreInfo").innerHTML = '<a class="btn btn-light" href="' + directionURL + '" target="_blank">More Info</a> ' +
-        '<a class="btn btn-light" href="' + directionURL + '" target="_blank">Push Dir. to Text</a>'; // Here's the button Vish
+        '<a class="btn btn-light directionText">Add Directions to Text</a>'; // Here's the button Vish
           }
    //onclick="secondFunction()"
 
@@ -207,7 +208,7 @@ $(document).ready(function() {
 							
 						}
 						else{
-							$('#ingredients').append("<div id=ingredient><div id=manualAdd1 style='color:red'>"+ amount + " " + str + "</div> <div id=addToCartButton1 class='col-md-2 col-sm-2'>Add To Cart</div></div> <br>");
+							$('#ingredients').append("<div id=ingredient><div id=manualAdd1 style='color:#FFCCCC'>"+ amount + " " + str + "</div> <div id=addToCartButton1 class='col-md-2 col-sm-2'>Add To Cart</div></div> <br>");
 							redCount++;
 						}
 					}
@@ -277,7 +278,7 @@ $(document).ready(function() {
 						
 					}
 					else{
-						$('#ingredients').append("<div id=ingredient><div id=manualAdd1 style='color:red'>"+ amount + " " + str + "</div> <div id=addToCartButton1 class='col-md-2 col-sm-2'>Add To Cart</div></div> <br>");
+						$('#ingredients').append("<div id=ingredient><div id=manualAdd1 style='color:#FFCCCC'>"+ amount + " " + str + "</div> <div id=addToCartButton1 class='col-md-2 col-sm-2'>Add To Cart</div></div> <br>");
 						redCount++;
 					}
 				}
@@ -396,9 +397,13 @@ $(document).ready(function() {
 		});
 		var bodyString = ""
 		textArray.forEach(function(item, index, textArray){
-		bodyString += item;
-		bodyString += ", ";
+			bodyString += item;
+			bodyString += ", ";
 		});
+		if (directionURL != ""){
+			bodyString += "Here is the google maps direction link to your liquor store: "
+			bodyString += directionURLString;
+		}
 		console.log(bodyString);
 
 		$.ajax({
@@ -424,8 +429,10 @@ $(document).ready(function() {
 	var loadTemplate = function(){
 		$(".templateContainer").append('<object type="text/html" data="drinkTemplate1.html" ></object>');
 	}
- 	
 
+	$(document).on('click', '.directionText',function(){
+		directionURLString = directionURL;
+	});
 
 });
 
