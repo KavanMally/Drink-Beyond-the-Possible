@@ -2,7 +2,7 @@
       var infowindow;
       var directionsService;
       var directionsDisplay;
-      var centerCords = {lat: 41.514, lng: -81.606};
+      var centerCords = {lat: 41.501975, lng: -81.607539};
       var directionURL = "";
       var selectedMarker = null;
       var directionURLString = "";
@@ -29,9 +29,9 @@
         });
         directionsDisplay.setMap(map);
 
-        //----------------------------------------------------------------
+        //----------------------------------------------------------------  
 
-      if(centerCords.lat == 41.514 && centerCords.lng == -81.606){
+      if(centerCords.lat == 41.501975 && centerCords.lng == -81.607539){
                 if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
             centerCords = {
