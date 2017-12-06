@@ -5,6 +5,7 @@
       var centerCords = {lat: 41.514, lng: -81.606};
       var directionURL = "";
       var selectedMarker = null;
+      var directionURLString = "";
 
     function initMap() {
     	document.getElementById("moreInfo").innerHTML = ""; // resets the buttons because nothing is selected 
@@ -76,7 +77,7 @@
         directionURL = "http://www.google.com/maps/dir/" + centerCords.lat + "," + centerCords.lng + "/" + formatStoreName(finishName) + "/@" + finish.lat() + "," + finish.lng();
         alert(directionURL);
         document.getElementById("moreInfo").innerHTML = '<a class="btn btn-light" href="' + directionURL + '" target="_blank">More Info</a> ' +
-        '<a class="btn btn-light" href="' + directionURL + '" target="_blank">Push Dir. to Text</a>'; // Here's the button Vish
+        '<a class="btn btn-light directionText">Add Directions to Text</a>'; // Here's the button Vish
           }
    //onclick="secondFunction()"
 
@@ -398,9 +399,13 @@ $(document).ready(function() {
 		});
 		var bodyString = ""
 		textArray.forEach(function(item, index, textArray){
-		bodyString += item;
-		bodyString += ", ";
+			bodyString += item;
+			bodyString += ", ";
 		});
+		if (directionURL != ""){
+			bodyString += "Here is the google maps direction link to your liquor store: "
+			bodyString += directionURLString;
+		}
 		console.log(bodyString);
 
 		$.ajax({
@@ -426,8 +431,10 @@ $(document).ready(function() {
 	var loadTemplate = function(){
 		$(".templateContainer").append('<object type="text/html" data="drinkTemplate1.html" ></object>');
 	}
- 	
 
+	$(document).on('click', '.directionText',function(){
+		directionURLString = directionURL;
+	});
 
 });
 

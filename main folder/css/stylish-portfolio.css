@@ -173,6 +173,9 @@ hr.small {
   padding: 50px 0;
 }
 
+#checkboxes{
+  
+}
 
 /* Services */
 
@@ -195,10 +198,6 @@ hr.small {
   max-height: 300px;
 }
 
-
-
-/* Callout */
-
 .callout {
   display: table;
   width: 100%;
@@ -210,9 +209,6 @@ hr.small {
   -o-background-size: cover;
   background-size: cover;
 }
-
-
-/* Portfolio */
 
 .portfolio {
   padding: 50px 0;
@@ -230,9 +226,6 @@ hr.small {
   opacity: .8;
 }
 
-
-/* Call to Action */
-
 .call-to-action {
   padding: 50px 0;
 }
@@ -240,11 +233,6 @@ hr.small {
 .call-to-action .btn {
   margin: 10px;
 }
-
-
-
-
-/* Map */
 
 .map {
   height: 500px;
@@ -260,8 +248,6 @@ hr.small {
   pointer-events: none;
 }
 
-
-/* Footer */
 
 footer {
   padding: 100px 0;
