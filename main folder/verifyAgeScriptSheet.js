@@ -1,17 +1,14 @@
-//module.exports = {
-	function checkingAgeWrapper(){
+function checkingAgeWrapper(){
  	input = document.getElementById('VABirthDay').value;
  	checkingAge(input);
  }
 
-
 function checkingAge(input){
-//exports.checkingAge = function(input){
 
 	var userEnteredBirthDay = input;
 	// check to make sure something was entered
 	if (userEnteredBirthDay == ""){
-		alert("Please enter your birthdate before entering.");
+		alert("Please enter a valid birthday.");
 		return;
 	}
 
@@ -42,20 +39,16 @@ function checkingAge(input){
 				}
 			}
 		}	
-
 		if (oldEnough == 0) {
 			document.body.style.fontSize = "75px";
 			document.body.style.textAlign = "center";
 			lockOutOfApp(bDayYear, bDayMonth, bDayDay, currentDate);
 		}
 	}
-
 }
 
 function lockOutOfApp(bDayYear, bDayMonth, bDayDay, currentDate){
 	document.getElementById("InputOutput").innerHTML = "You're too young to use this website! <br> The site will unlock when you are 21.";
-
-
 	var daysLeft = 0;
 
 	// convirting years difference to days
@@ -78,8 +71,7 @@ function lockOutOfApp(bDayYear, bDayMonth, bDayDay, currentDate){
 	{
 		daysLeft = daysLeft + BdayMToDays - CDateMToDays;
 	}
-
-
+	// runs every second.
 	var x = setInterval(function(){daysLeft = countdown(daysLeft)}, 1000);
 }
 
@@ -105,23 +97,5 @@ function countdown(daysLeft){
 	{
 		window.location.href = window.location.href + "/../index.html";
 	}
-
 	return daysLeft;
-}
-
-function loadDoc() {
-	
-  var xhttp = new XMLHttpRequest();
-
-	xmlhttp.onreadystatechange = function() {
-			
-		if (xmlhttp.readyState == 1) 
-		{
-			document.body.innerHTML = "loading...";
-		}
-		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
-		{
-			//logToAnalytics(url);
-		}
-	};
 }

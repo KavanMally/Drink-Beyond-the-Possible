@@ -1,136 +1,230 @@
-  var map;
-      var infowindow;
-      var directionsService;
-      var directionsDisplay;
-      var centerCords = {lat: 41.501975, lng: -81.607539};
-      var directionURL = "";
-      var selectedMarker = null;
-      var directionURLString = "";
+// -----------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------Verify Age functions----------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------
 
-    function initMap() {
-    	document.getElementById("moreInfo").innerHTML = ""; // resets the buttons because nothing is selected 
-        directionsService = new google.maps.DirectionsService;
-        directionsDisplay = new google.maps.DirectionsRenderer;
+function checkingAgeWrapper(){
+ 	input = document.getElementById('VABirthDay').value;
+	checkingAge(input);
+}
 
-        //determines initial zoom based on radius searched
-        var zoomValue = 12;
-        if(document.getElementById('radius').value >= 8000){
-        	zoomValue = 11;
-        	if(document.getElementById('radius').value >= 20000){
-        		zoomValue = 10;
-        	}
+function checkingAge(input){
 
-        }
+	var userEnteredBirthDay = input;
+	// check to make sure something was entered
+	if (userEnteredBirthDay == ""){
+		alert("Please enter a valid birthday.");
+		return;
+	}
 
+	var bDayYear = parseInt(userEnteredBirthDay);
+	var bDayMonth = parseInt(userEnteredBirthDay.substr(5,6));
+	var bDayDay = parseInt(userEnteredBirthDay.substr(8,9)) - 1;
 
-        map = new google.maps.Map(document.getElementById('contact'), {
-          center: centerCords,
-          zoom: zoomValue
-        });
-        directionsDisplay.setMap(map);
+	var currentDate = new Date();
 
+	var minYear = currentDate.getFullYear() - 21;
+	var minDay = currentDate.getDate();
+	var minMonth = currentDate.getMonth() + 1; // min month is 0-11 user month is 1 - 12
+	var oldEnough = 0; // the lock out function was triggering before the page changed so I had to implement if statment
+	// It serves no technical use but is a simple fix for a visual bug.
+
+	if(bDayYear < minYear){
+		window.location.href = window.location.href + "/../index.html";
+		oldEnough = 1;
+	} else{
+		if (bDayYear == minYear){
+			if(bDayMonth < minMonth){
+				window.location.href = window.location.href + "/../index.html";
+				oldEnough = 1;
+			} else if(bDayMonth == minMonth){
+				if(bDayDay < minDay){
+					window.location.href = window.location.href + "/../index.html";
+					oldEnough = 1;
+				}
+			}
+		}	
+		if (oldEnough == 0) {
+			document.body.style.fontSize = "75px";
+			document.body.style.textAlign = "center";
+			lockOutOfApp(bDayYear, bDayMonth, bDayDay, currentDate);
+		}
+	}
+}
+
+function lockOutOfApp(bDayYear, bDayMonth, bDayDay, currentDate){
+	document.getElementById("InputOutput").innerHTML = "You're too young to use this website! <br> The site will unlock when you are 21.";
+	var daysLeft = 0;
+
+	// convirting years difference to days
+	bDayYear = bDayYear + 21; // goes from DOB to 21st birthday
+	bDayYear = bDayYear - currentDate.getFullYear(); // number of years till 21st birthday
+	daysLeft = (bDayYear * 365);
+
+	// convirting month difference to days 
+	var months = [0,31,59,90,120,151,181,212,243,273,304,334];
+
+	var BdayMToDays = months[bDayMonth - 1] + bDayDay;
+	var CDateMToDays = months[currentDate.getMonth()] + currentDate.getDate();
+
+	if (BdayMToDays < CDateMToDays) {
+		daysLeft = daysLeft - CDateMToDays + BdayMToDays; 
+	}
+
+	if (BdayMToDays > CDateMToDays) {
+		daysLeft = daysLeft + BdayMToDays - CDateMToDays;
+	}
+	// runs every second.
+	var x = setInterval(function(){daysLeft = countdown(daysLeft)}, 1000);
+}
+
+function countdown(daysLeft){
+	var currentDateAndTime = new Date();
+	var currentTime = currentDateAndTime.getTime();
+	var currentSecond = Math.floor(60 - currentTime % (1000 * 60) / 1000);
+	var currentMin = Math.floor(60 - currentTime % (1000 * 60 * 60) / (1000 * 60));
+	var currentHour = Math.floor(24 - currentTime % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+
+	// syncs hours up to complete when the timer hits 0
+	currentHour = (currentHour + 5) % 24;
+	
+	if (currentHour == 23 && currentMin == 59 && currentSecond == 59 && daysLeft != 0) {
+		daysLeft--;
+	}
+
+	document.getElementById("Countdown").innerHTML = " D-" + daysLeft + " H-" + currentHour + " M-" + currentMin + " S-" + currentSecond;
+
+	if (daysLeft == 0 && currentHour == 0 && currentMin == 0 && currentSecond == 0) {
+		window.location.href = window.location.href + "/../index.html";
+	}
+	return daysLeft;
+}
+
+// -----------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------mapping functions-------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------
+var map;
+var infowindow;
+var directionsService;
+var directionsDisplay;
+var centerCords = {lat: 41.501975, lng: -81.607539}; var directionURL = "";
+var selectedMarker = null;
+var directionURLString = "";
+
+function initMap() {
+	document.getElementById("moreInfo").innerHTML = ""; // resets the buttons because nothing is selected 
+    directionsService = new google.maps.DirectionsService;
+    directionsDisplay = new google.maps.DirectionsRenderer;
+
+    //determines initial zoom based on radius searched
+    var zoomValue = 12;
+    if(document.getElementById('radius').value >= 8000){
+    	zoomValue = 11;
+    	if(document.getElementById('radius').value >= 20000){
+    		zoomValue = 10;
+    	}
+    }
+    map = new google.maps.Map(document.getElementById('contact'), {
+        center: centerCords,
+        zoom: zoomValue
+    });
+    directionsDisplay.setMap(map);
         //----------------------------------------------------------------  
 
-      if(centerCords.lat == 41.501975 && centerCords.lng == -81.607539){
-                if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            centerCords = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
+    if(centerCords.lat == 41.501975 && centerCords.lng == -81.607539){
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+            	centerCords = {
+            		lat: position.coords.latitude,
+              		lng: position.coords.longitude
+            	};
 
-            map.setCenter(centerCords);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
+            	map.setCenter(centerCords);
+          	}, function() {
+   		        handleLocationError(true, infoWindow, map.getCenter());
+            });
         } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
+          	// Browser doesn't support Geolocation
+        	handleLocationError(false, infoWindow, map.getCenter());
         }
-      }
+    }
       //-------------------------------------------------------------------------------
-      	var selectedMarker = null;
+    var selectedMarker = null;
+    infowindow = new google.maps.InfoWindow();
+    var service = new google.maps.places.PlacesService(map);
+    service.nearbySearch({
+    	location: centerCords,
+    	radius: document.getElementById('radius').value,
+    	type: ['liquor_store']
+    }, callback);
+}
 
-        infowindow = new google.maps.InfoWindow();
-        var service = new google.maps.places.PlacesService(map);
-        service.nearbySearch({
-          location: centerCords,
-          radius: document.getElementById('radius').value,
-          type: ['liquor_store']
-        }, callback);
-      }
-      function calculateAndDisplayRoute(directionsService, directionsDisplay, start, finish, finishAddress) {
-        directionsService.route({
-          origin: start,
-          destination: finish,
-          travelMode: 'DRIVING'
-        }, function(response, status) {
-          if (status === 'OK') {
-            directionsDisplay.setDirections(response);
-          } else {
-            window.alert('Directions could not be produced because ' + status);
-          }
-        });
-
-        // url that will be texted
-        directionURL = "http://www.google.com/maps/dir/" + centerCords.lat + "," + centerCords.lng + "/" + formatStoreName(finishAddress) + "/@" + finish.lat() + "," + finish.lng();
-        document.getElementById("moreInfo").innerHTML = '<a class="btn btn-light" href="' + directionURL + '" target="_blank">More Info</a> ' +
-        '<a class="btn btn-light directionText">Add Directions to Text</a>'; // Here's the button Vish
-          }
-   //onclick="secondFunction()"
-
-      function callback(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          var i;
-          for (i = 0; i < results.length; i++) {
-            createMarker(results[i]);
-          }
+function calculateAndDisplayRoute(directionsService, directionsDisplay, start, finish, finishAddress) {
+    directionsService.route({
+        origin: start,
+        destination: finish,
+        travelMode: 'DRIVING'
+    }, function(response, status) {
+        if (status === 'OK') {
+        	directionsDisplay.setDirections(response);
+        } else {
+        	window.alert('Directions could not be produced because ' + status);
         }
-      }
+    });
+    // url that will be texted
+    directionURL = "http://www.google.com/maps/dir/" + centerCords.lat + "," + centerCords.lng + "/" + formatStoreName(finishAddress) + "/@" + finish.lat() + "," + finish.lng();
+    document.getElementById("moreInfo").innerHTML = '<a class="btn btn-light" href="' + directionURL + '" target="_blank">More Info</a> ' +
+    '<a class="btn btn-light directionText">Add Directions to Text</a>'; // Here's the button Vish
+}
 
-      function createMarker(place) {
-        //var placeLoc = place.geometry.location; might not be neccesary
-        var marker = new google.maps.Marker({
-          map: map,
-          position: place.geometry.location
-        });
 
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(place.name);
-          infowindow.open(map, this);
-        });
+function callback(results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+    	var i;
+        for (i = 0; i < results.length; i++) {
+        	createMarker(results[i]);
+        }
+    }
+}
 
-       google.maps.event.addListener(marker, 'click', function(){
+function createMarker(place) {
+    //var placeLoc = place.geometry.location; might not be neccesary
+    var marker = new google.maps.Marker({
+        map: map,
+        position: place.geometry.location
+    });
+       
+    google.maps.event.addListener(marker, 'click', function() {
+    	infowindow.setContent(place.name);
+        infowindow.open(map, this);
+    });
 
-       	  if (selectedMarker != null) 
-       	  {
+    google.maps.event.addListener(marker, 'click', function(){
+       	if (selectedMarker != null) {
        	  	selectedMarker.setVisible(true);
-       	  }
+       	}
+       	selectedMarker = marker;
+        marker.setVisible(false);
+        calculateAndDisplayRoute(directionsService, directionsDisplay, centerCords, place.geometry.location, place.vicinity) // if extra time re add place.name to the vicinty and fix the bug
+    }); // can set visibility to false, try to make it so it does directions when you select 
+}
 
-       	  selectedMarker = marker;
-          marker.setVisible(false);
-          calculateAndDisplayRoute(directionsService, directionsDisplay, centerCords, place.geometry.location, place.vicinity) // if extra time re add place.name to the vicinty and fix the bug
-        }); // can set visibility to false, try to make it so it does directions when you select 
-      }
-
-       function formatStoreName(name){
-        var test = 1;
-        var formatedName = "";
-        while(name.indexOf(' ') != -1){
-          formatedName += name.substring(0, name.indexOf(' '));
-          formatedName += "+";
-          name = name.substring(name.indexOf(' ') + 1);
-          test++; 
-        }
-          formatedName += name;
-        return formatedName;
-      }
+function formatStoreName(name){
+    var test = 1;
+    var formatedName = "";
+    while(name.indexOf(' ') != -1){
+        formatedName += name.substring(0, name.indexOf(' '));
+        formatedName += "+";
+        name = name.substring(name.indexOf(' ') + 1);
+        test++; 
+    }
+    formatedName += name;
+    return formatedName;
+}
 
 
 var printBack = function(stuff){
 		console.log(stuff);
 }
-
 
 $(document).ready(function() {
 	var name='';
