@@ -75,7 +75,7 @@
         // url that will be texted
         directionURL = "http://www.google.com/maps/dir/" + centerCords.lat + "," + centerCords.lng + "/" + formatStoreName(finishAddress) + "/@" + finish.lat() + "," + finish.lng();
         document.getElementById("moreInfo").innerHTML = '<a class="btn btn-light" href="' + directionURL + '" target="_blank">More Info</a> ' +
-        '<a class="btn btn-light directionText">Add Directions to Text</a>'; // Here's the button Vish
+        '<a class="btn btn-light directionText" style="color:black">Add Directions to Text</a>'; // Here's the button Vish
           }
    //onclick="secondFunction()"
 
@@ -145,6 +145,9 @@ $(document).ready(function() {
 	var redCount = 0;
 
 	var listContains = function(key){
+	if (key == null){
+		return false;
+	}
 	
 	for(var i = 0; i < list.length; i++){
 		if(list[i].toLowerCase() === key.toLowerCase()) 
@@ -432,6 +435,7 @@ $(document).ready(function() {
 
 	$(document).on('click', '.directionText',function(){
 		directionURLString = directionURL;
+		alert("url added to text!");
 	});
 
 });

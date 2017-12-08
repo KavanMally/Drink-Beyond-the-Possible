@@ -55,9 +55,11 @@ function createCheckList(){
 		//
 		var div = document.createElement('div');
 		div.id = "checkboxes";
+		div.style = "width:100%;"
 		
 		var ul = document.createElement('ul');
 		ul.id = "myul";
+		ul.style = "column-count: 6;column-gap: 30px;width:100%;"
 		
 		
 		//document.getElementById("myul").style.listStyle = "none";
