@@ -158,7 +158,6 @@ function initMap() {
     }, callback);
 }
 
-<<<<<<< HEAD
 function calculateAndDisplayRoute(directionsService, directionsDisplay, start, finish, finishAddress) {
     directionsService.route({
         origin: start,
@@ -169,21 +168,6 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, start, f
         	directionsDisplay.setDirections(response);
         } else {
         	window.alert('Directions could not be produced because ' + status);
-=======
-        // url that will be texted
-        directionURL = "http://www.google.com/maps/dir/" + centerCords.lat + "," + centerCords.lng + "/" + formatStoreName(finishAddress) + "/@" + finish.lat() + "," + finish.lng();
-        document.getElementById("moreInfo").innerHTML = '<a class="btn btn-light" href="' + directionURL + '" target="_blank">More Info</a> ' +
-        '<a class="btn btn-light directionText" style="color:black">Add Directions to Text</a>'; // Here's the button Vish
-          }
-   //onclick="secondFunction()"
-
-      function callback(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          var i;
-          for (i = 0; i < results.length; i++) {
-            createMarker(results[i]);
-          }
->>>>>>> 8f5d4fdce6ba4eb1827f431eacd46f50d7d767bc
         }
     });
     // url that will be texted
@@ -255,9 +239,6 @@ $(document).ready(function() {
 	var redCount = 0;
 
 	var listContains = function(key){
-	if (key == null){
-		return false;
-	}
 	
 	for(var i = 0; i < list.length; i++){
 		if(list[i].toLowerCase() === key.toLowerCase()) 
@@ -545,7 +526,6 @@ $(document).ready(function() {
 
 	$(document).on('click', '.directionText',function(){
 		directionURLString = directionURL;
-		alert("url added to text!");
 	});
 
 });
