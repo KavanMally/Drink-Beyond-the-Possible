@@ -31,6 +31,7 @@
 	<script src="js/checklist.js"> </script>
   <script src="js/index.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/SearchDrinks.js"></script>
 
 
   </head>
@@ -52,7 +53,7 @@
           <a class="js-scroll-trigger" href="#top">Home</a>
         </li>
 		<li> 
-			<a class="js-scroll-trigger" href="#inventory">Enter Ingredients</a>
+			<a class="js-scroll-trigger" href="#checkboxes">Enter Ingredients</a>
 		</li>
         <li>
           <a class="js-scroll-trigger" href="#searchDrinks">Search for a Drink</a>
@@ -80,7 +81,7 @@
     </header>
 
 	<!-- Services -->
-	<section id="inventory" class="services bg-primary text-white">
+	<section id="checkboxes" class="services bg-primary text-white">
 	<!-- checkbox list -->
       <h2 style="text-align: center"> What do you have in your bar? <br> </h2>
 			<div class="row" id="checkboxlist" class="services bg-primary text-white"> 
@@ -203,7 +204,7 @@
           Add to cart
           <div id=addItem>
             <input type="text" id="manualAdd" value="" class="addItem" placeholder="Strawberries">
-            <div id=addToCartButton class=addItem>Add To Shopping Cart</div>
+            <div id=addToCartButton class=addItem>add item to list</div>
           </div>
           <div id=enterNumber>
             <input type="text" id="manualAdd" value="" class="addItem" placeholder="Ex. 1-123-456-7890">
@@ -280,10 +281,26 @@
                 <a href="mailto:kam200@case.edu">kam200@case.edu<br></a>
                 <i class="fa fa-envelope-o fa-fw"></i>
                 <a href="mailto:dan57@case.edu">dan57@case.edu<br></a>
-                  </li>
+              </li>
             </ul>
             <br>
-
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fa fa-facebook fa-fw fa-3x"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fa fa-twitter fa-fw fa-3x"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fa fa-dribbble fa-fw fa-3x"></i>
+                </a>
+              </li>
+            </ul>
             <hr class="small">
             <p class="text-muted">Copyright &copy; The Squad</p>
           </div>
