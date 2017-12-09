@@ -414,14 +414,10 @@ $(document).ready(function() {
 			type: 'GET',
 			// Everything that happens after clicking the random option 
 			success: function(data){
-				if (data.drinks != null){
-					length = data.drinks.length;
-					drinkList = data.drinks
-				
-				}
-				else{
-					length = 0;
-				}
+				length = data.drinks.length;
+				drinkList = data.drinks
+				//console.log(drinkList[1].strDrink);
+				console.log(length);
 			},
 			error: function(data){
 
@@ -489,6 +485,7 @@ $(document).ready(function() {
 		}
 	});
 	$(document).on('click','#addToCartButton1',function(){
+		console.log("AFRICAAA");
 		var ingredientAdd = $(this).siblings("#manualAdd1").html();
 		$('#allItems').append("<div id=singleItem><div class= item id=cartItem>" + ingredientAdd +  "</div><div class= item id=removeItem><i class='fa fa-times fa-1x' aria-hidden=true></i></div></div>");
 	});
@@ -498,11 +495,9 @@ $(document).ready(function() {
 	const authToken = "c735425985c92c2694e5fe3b08e9b849";
 	var counter = 0;
 	var currentItem = "";
-	var targetString = "";
 	$('#sendText').on('click', function(){
 		counter = 0;
 		var textArray = new Array();
-		targetString = document.getElementById('manualNumber').value;
 		$('#allItems').children('#singleItem').each(function(){
 			var item = document.getElementsByClassName('item');
 			var itemName = item[counter].innerHTML;
@@ -525,7 +520,7 @@ $(document).ready(function() {
             type: 'POST',
             url: 'https://api.twilio.com/2010-04-01/Accounts/' + accountSid	 + '/Messages.json',
             data: {
-               	"To" : targetString,
+               	"To" : "+19783823790",
 	   			"From" : "+16176124369",
                 "Body" : bodyString
             },
@@ -537,7 +532,6 @@ $(document).ready(function() {
             },
             error: function(data) {
                 console.log(data);
-                alert("Something went wrong, invalid number entered");
             }
         });
 
